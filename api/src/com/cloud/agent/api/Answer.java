@@ -46,6 +46,14 @@ public class Answer extends Command {
         return details;
     }
 
+    public void setDetails(String details) {
+    	this.details = details;
+    }
+    
+    public void setResult(boolean result) {
+    	this.result = result;
+    }
+    
     @Override
     public boolean executeInSequence() {
         return false;

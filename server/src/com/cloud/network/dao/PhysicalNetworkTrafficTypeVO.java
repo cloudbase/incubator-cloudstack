@@ -58,6 +58,9 @@ public class PhysicalNetworkTrafficTypeVO implements PhysicalNetworkTrafficType 
     @Column(name = "vmware_network_label")
     private String vmwareNetworkLabel;
 
+    @Column(name = "hyperv_network_label")
+    private String hypervNetworkLabel;
+
     @Column(name = "simulator_network_label")
     private String simulatorNetworkLabel;
     
@@ -67,12 +70,13 @@ public class PhysicalNetworkTrafficTypeVO implements PhysicalNetworkTrafficType 
     public PhysicalNetworkTrafficTypeVO() {
     }
 
-    public PhysicalNetworkTrafficTypeVO(long physicalNetworkId, TrafficType trafficType, String xenLabel, String kvmLabel, String vmwareLabel, String simulatorLabel, String vlan) {
+    public PhysicalNetworkTrafficTypeVO(long physicalNetworkId, TrafficType trafficType, String xenLabel, String kvmLabel, String vmwareLabel, String hypervLabel, String simulatorLabel, String vlan) {
         this.physicalNetworkId = physicalNetworkId;
         this.trafficType = trafficType;
         this.xenNetworkLabel = xenLabel;
         this.kvmNetworkLabel = kvmLabel;
         this.vmwareNetworkLabel = vmwareLabel;
+        this.hypervNetworkLabel = hypervLabel;
         this.simulatorNetworkLabel = simulatorLabel;
         this.setVlan(vlan);
         this.uuid = UUID.randomUUID().toString();
@@ -118,6 +122,15 @@ public class PhysicalNetworkTrafficTypeVO implements PhysicalNetworkTrafficType 
     @Override
     public String getVmwareNetworkLabel() {
     	return vmwareNetworkLabel;
+    }
+
+    public void setHypervNetworkLabel(String hypervNetworkLabel) {
+        this.hypervNetworkLabel = hypervNetworkLabel;
+    }
+    
+    @Override
+    public String getHypervNetworkLabel() {
+    	return hypervNetworkLabel;
     }
 
 	public void setSimulatorNetworkLabel(String simulatorNetworkLabel) {

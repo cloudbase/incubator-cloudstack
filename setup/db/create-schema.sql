@@ -1652,6 +1652,7 @@ INSERT IGNORE INTO `cloud`.`hypervisor_capabilities`(hypervisor_type, hypervisor
 INSERT IGNORE INTO `cloud`.`hypervisor_capabilities`(hypervisor_type, hypervisor_version, max_guests_limit, security_group_enabled) VALUES ('KVM', 'default', 50, 1);
 INSERT IGNORE INTO `cloud`.`hypervisor_capabilities`(hypervisor_type, hypervisor_version, max_guests_limit, security_group_enabled) VALUES ('Ovm', 'default', 25, 1);
 INSERT IGNORE INTO `cloud`.`hypervisor_capabilities`(hypervisor_type, hypervisor_version, max_guests_limit, security_group_enabled) VALUES ('Ovm', '2.3', 25, 1);
+INSERT IGNORE INTO `cloud`.`hypervisor_capabilities`(hypervisor_type, hypervisor_version, max_guests_limit, security_group_enabled) VALUES ('Hyperv', '2.0', 196, 1);
 
 CREATE TABLE  `cloud`.`launch_permission` (
   `id` bigint unsigned NOT NULL auto_increment,
@@ -1891,6 +1892,7 @@ CREATE TABLE `cloud`.`swift` (
   CONSTRAINT `uc_swift__uuid` UNIQUE (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 CREATE TABLE `cloud`.`op_host_transfer` (
   `id` bigint unsigned UNIQUE NOT NULL COMMENT 'Id of the host',
   `initial_mgmt_server_id` bigint unsigned COMMENT 'management server the host is transfered from',
@@ -2037,6 +2039,7 @@ CREATE TABLE `cloud`.`physical_network_traffic_types` (
   `xen_network_label` varchar(255) COMMENT 'The network name label of the physical device dedicated to this traffic on a XenServer host',
   `kvm_network_label` varchar(255) DEFAULT 'cloudbr0' COMMENT 'The network name label of the physical device dedicated to this traffic on a KVM host',
   `vmware_network_label` varchar(255) DEFAULT 'vSwitch0' COMMENT 'The network name label of the physical device dedicated to this traffic on a VMware host',
+  `hyperv_network_label` varchar(255) DEFAULT 'hyperv0' COMMENT 'The network name label of the physical device dedicated to this traffic on a Hyperv host',
   `simulator_network_label` varchar(255) COMMENT 'The name labels needed for identifying the simulator',
   `ovm_network_label` varchar(255) COMMENT 'The network name label of the physical device dedicated to this traffic on a Ovm host',
   `vlan` varchar(255) COMMENT 'The vlan tag to be sent down to a VMware host',
@@ -2420,4 +2423,3 @@ CREATE TABLE `cloud`.`nicira_nvp_nic_map` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET foreign_key_checks = 1;
-

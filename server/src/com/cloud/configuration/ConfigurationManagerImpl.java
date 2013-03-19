@@ -1575,7 +1575,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                     } catch (InvalidParameterValueException noStorage) {
                         PhysicalNetworkTrafficTypeVO mgmtTraffic = _trafficTypeDao.findBy(mgmtPhyNetwork.getId(), TrafficType.Management);
                         _networkSvc.addTrafficTypeToPhysicalNetwork(mgmtPhyNetwork.getId(), TrafficType.Storage.toString(), mgmtTraffic.getXenNetworkLabel(), mgmtTraffic.getKvmNetworkLabel(),
-                                mgmtTraffic.getVmwareNetworkLabel(), mgmtTraffic.getSimulatorNetworkLabel(), mgmtTraffic.getVlan());
+                                mgmtTraffic.getVmwareNetworkLabel(), mgmtTraffic.getHypervNetworkLabel(), mgmtTraffic.getSimulatorNetworkLabel(), mgmtTraffic.getVlan());
                         s_logger.info("No storage traffic type was specified by admin, create default storage traffic on physical network " + mgmtPhyNetwork.getId() + " with same configure of management traffic type");
                     }
                 } catch (InvalidParameterValueException ex) {

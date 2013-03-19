@@ -99,6 +99,7 @@ public enum Config {
 	VmNetworkThrottlingRate("Network", ManagementServer.class, Integer.class, "vm.network.throttling.rate", "200", "Default data transfer rate in megabits per second allowed in User vm's default network.", null),
 	NetworkLockTimeout("Network", ManagementServer.class, Integer.class, "network.lock.timeout", "600", "Lock wait timeout (seconds) while implementing network", null),
 
+
 	SecurityGroupWorkCleanupInterval("Network", ManagementServer.class, Integer.class, "network.securitygroups.work.cleanup.interval", "120", "Time interval (seconds) in which finished work is cleaned up from the work table", null),
 	SecurityGroupWorkerThreads("Network", ManagementServer.class, Integer.class, "network.securitygroups.workers.pool.size", "50", "Number of worker threads processing the security group update work queue", null),
 	SecurityGroupWorkGlobalLockTimeout("Network", ManagementServer.class, Integer.class, "network.securitygroups.work.lock.timeout", "300", "Lock wait timeout (seconds) while updating the security group work queue", null),
@@ -191,7 +192,7 @@ public enum Config {
 	CPUOverprovisioningFactor("Advanced", ManagementServer.class, String.class, "cpu.overprovisioning.factor", "1", "Used for CPU overprovisioning calculation; available CPU will be (actualCpuCapacity * cpu.overprovisioning.factor)", null),
 	MemOverprovisioningFactor("Advanced", ManagementServer.class, String.class, "mem.overprovisioning.factor", "1", "Used for memory overprovisioning calculation", null),
 	LinkLocalIpNums("Advanced", ManagementServer.class, Integer.class, "linkLocalIp.nums", "10", "The number of link local ip that needed by domR(in power of 2)", null),
-	HypervisorList("Advanced", ManagementServer.class, String.class, "hypervisor.list", HypervisorType.KVM + "," + HypervisorType.XenServer + "," + HypervisorType.VMware + "," + HypervisorType.BareMetal + "," + HypervisorType.Ovm, "The list of hypervisors that this deployment will use.", "hypervisorList"),
+	HypervisorList("Advanced", ManagementServer.class, String.class, "hypervisor.list", HypervisorType.KVM + "," + HypervisorType.XenServer + "," + HypervisorType.Hyperv + "," + HypervisorType.VMware + "," + HypervisorType.BareMetal + "," + HypervisorType.Ovm, "The list of hypervisors that this deployment will use.", "hypervisorList"),
 	ManagementHostIPAdr("Advanced", ManagementServer.class, String.class, "host", "localhost", "The ip address of management server", null),
 	ManagementNetwork("Advanced", ManagementServer.class, String.class, "management.network.cidr", null, "The cidr of management server network", null),
 	EventPurgeDelay("Advanced", ManagementServer.class, Integer.class, "event.purge.delay", "15", "Events older than specified number days will be purged. Set this value to 0 to never delete events", null),

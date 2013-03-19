@@ -44,6 +44,7 @@
     <module>event-bus/rabbitmq</module>
     <module>hypervisors/simulator</module>
     <module>hypervisors/baremetal</module>
+    <module>hypervisors/hyperv</module>
     <module>hypervisors/ucs</module>
     <module>network-elements/elastic-loadbalancer</module>
     <module>network-elements/ovs</module>
@@ -132,6 +133,17 @@
       </activation>
       <modules>
         <module>hypervisors/vmware</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>hyperv</id>
+      <activation>
+        <property>
+          <name>nonoss</name>
+        </property>
+      </activation>
+      <modules>
+        <module>hypervisors/hyperv</module>
       </modules>
     </profile>
     <profile>

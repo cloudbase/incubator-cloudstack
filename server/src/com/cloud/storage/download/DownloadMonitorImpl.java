@@ -372,6 +372,10 @@ public class DownloadMonitorImpl extends ManagerBase implements  DownloadMonitor
 				dcmd.setCreds(TemplateConstants.DEFAULT_HTTP_AUTH_USER, _copyAuthPasswd);
 			}
 			HostVO ssAhost = _ssvmMgr.pickSsvmHost(sserver);
+			
+			if(ssAhost == null && sserver.getResource() != null && sserver.getResource().toLowerCase().contains("hyperv"))
+				ssAhost = sserver;
+				
 			if( ssAhost == null ) {
 	             s_logger.warn("There is no secondary storage VM for secondary storage host " + sserver.getName());
 	             return;

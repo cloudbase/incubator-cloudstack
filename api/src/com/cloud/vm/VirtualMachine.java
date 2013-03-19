@@ -43,7 +43,14 @@ public interface VirtualMachine extends RunningOn, ControlledEntity, Identity, I
         Migrating(true, "VM is being migrated.  host id holds to from host"),
         Error(false, "VM is in error"),
         Unknown(false, "VM state is unknown."),
-        Shutdowned(false, "VM is shutdowned from inside");
+        Shutdowned(false, "VM is shutdowned from inside"),
+        
+        //Hyperv Specific States
+        NotFound(true, "VM was not found."),
+        Paused(false, "VM is paused."),
+        Saving(true, "VM is saving."),
+        Snapshotting(true, "VM is being snapshoted."),
+        Suspended(false, "VM is suspended.");
 
         private final boolean _transitional;
         String _description;
@@ -242,8 +249,6 @@ public interface VirtualMachine extends RunningOn, ControlledEntity, Identity, I
      */
     public long getTemplateId();
 
-
-
     /**
      * returns the guest OS ID
      * 
@@ -293,5 +298,4 @@ public interface VirtualMachine extends RunningOn, ControlledEntity, Identity, I
     HypervisorType getHypervisorType();
 
     public Map<String, String> getDetails();
-
 }

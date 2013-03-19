@@ -263,6 +263,24 @@ public class Script implements Callable<String> {
             StringWriter writer = new StringWriter();
             ex.printStackTrace(new PrintWriter(writer));
             return writer.toString();
+        } catch (IOException ex) {
+        	// FIXME: Maven removes the X-ecute permission from the deployed scripts.
+        	// if the exception is "Permission denied" then, change permissions.
+        	
+        	if(ex.getMessage().toLowerCase().contains("permission denied") && !command[0].equals("chmod"))
+        	{
+        		_logger.warn(ex.getMessage());
+        		Script script = new Script("chmod", s_logger);
+                script.add("0755", command[0]);
+                script.execute();
+                return execute(interpreter);
+        	}
+        	
+        	_logger.warn("Exception: " + buildCommandLine(command), ex);
+            StringWriter writer = new StringWriter();
+            ex.printStackTrace(new PrintWriter(writer));
+            return writer.toString();
+            
         } catch (Exception ex) {
             _logger.warn("Exception: " + buildCommandLine(command), ex);
             StringWriter writer = new StringWriter();

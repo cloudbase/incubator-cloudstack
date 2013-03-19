@@ -401,6 +401,7 @@ CREATE TABLE `cloud`.`physical_network_traffic_types` (
   `xen_network_label` varchar(255) COMMENT 'The network name label of the physical device dedicated to this traffic on a XenServer host',
   `kvm_network_label` varchar(255) DEFAULT 'cloudbr0' COMMENT 'The network name label of the physical device dedicated to this traffic on a KVM host',
   `vmware_network_label` varchar(255) DEFAULT 'vSwitch0' COMMENT 'The network name label of the physical device dedicated to this traffic on a VMware host',
+  `hyperv_network_label` varchar(255) DEFAULT 'hyperv0' COMMENT 'The network name label of the physical device dedicated to this traffic on a Hyperv host',
   `simulator_network_label` varchar(255) COMMENT 'The name labels needed for identifying the simulator',
   `ovm_network_label` varchar(255) COMMENT 'The network name label of the physical device dedicated to this traffic on a Ovm host',
   `vlan` varchar(255) COMMENT 'The vlan tag to be sent down to a VMware host',

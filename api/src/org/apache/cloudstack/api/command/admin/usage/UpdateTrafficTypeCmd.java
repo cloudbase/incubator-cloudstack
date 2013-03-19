@@ -52,6 +52,9 @@ public class UpdateTrafficTypeCmd extends BaseAsyncCmd {
 
     @Parameter(name=ApiConstants.VMWARE_NETWORK_LABEL, type=CommandType.STRING, description="The network name label of the physical device dedicated to this traffic on a VMware host")
     private String vmwareLabel;
+    
+    @Parameter(name=ApiConstants.HYPERV_NETWORK_LABEL, type=CommandType.STRING, description="The network name label of the physical device dedicated to this traffic on a HyperV host")
+    private String hypervLabel;
 
 
     /////////////////////////////////////////////////////
@@ -72,6 +75,10 @@ public class UpdateTrafficTypeCmd extends BaseAsyncCmd {
     public String getVmwareLabel() {
         return vmwareLabel;
     }
+    
+    public String getHypervLabel() {
+    	return hypervLabel;
+    }
 
     /////////////////////////////////////////////////////
     /////////////// API Implementation///////////////////
@@ -89,7 +96,7 @@ public class UpdateTrafficTypeCmd extends BaseAsyncCmd {
 
     @Override
     public void execute(){
-        PhysicalNetworkTrafficType result = _networkService.updatePhysicalNetworkTrafficType(getId(), getXenLabel(), getKvmLabel(), getVmwareLabel());
+        PhysicalNetworkTrafficType result = _networkService.updatePhysicalNetworkTrafficType(getId(), getXenLabel(), getKvmLabel(), getVmwareLabel(), getHypervLabel());
         if (result != null) {
             TrafficTypeResponse response = _responseGenerator.createTrafficTypeResponse(result);
             response.setResponseName(getCommandName());

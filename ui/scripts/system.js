@@ -4847,6 +4847,7 @@
                                         $(hostObjs).each(function() {
                                           //items.push({id: this.id, description: (this.name + ": " +(this.hasEnoughCapacity? "Available" : "Full"))}); //listHosts API no longer returns hasEnoughCapacity proprety
 																					items.push({id: this.id, description: this.name});
+
                                         });
                                         args.response.success({data: items});
                                       }
@@ -5221,6 +5222,7 @@
                 dataProvider: function (args) {
                   var searchByArgs = args.filterBy.search.value.length ?
                     '&name=' + args.filterBy.search.value : '';
+
 
                   var routers = [];
                   $.ajax({
@@ -9174,6 +9176,11 @@
                         items.push({id: "nfs", description: "nfs"});
                         items.push({id: "vmfs", description: "vmfs"});
                         args.response.success({data: items});
+                      }
+                      else if(selectedClusterObj.hypervisortype == "Hyperv") {
+                          var items = [];
+                          items.push({id: "nfs", description: "nfs"});
+                          args.response.success({data: items});
                       }
                       else if(selectedClusterObj.hypervisortype == "Ovm") {
                         var items = [];
