@@ -52,9 +52,6 @@ public class HypervSecondaryStorageResource extends NfsSecondaryStorageResource 
     }
     
     private Answer execute(ListTemplateCommand cmd) {
-        if (!_inSystemVM){
-            return new ListTemplateAnswer(cmd.getSecUrl(), new HashMap<String, TemplateInfo>());
-        }
         if (cmd.getSwift() != null) {
             Map<String, TemplateInfo> templateInfos = swiftListTemplate(cmd.getSwift());
             return new ListTemplateAnswer(cmd.getSwift().toString(), templateInfos);

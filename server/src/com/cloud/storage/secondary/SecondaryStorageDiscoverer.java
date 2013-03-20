@@ -198,7 +198,7 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
             params.put("pod", podId.toString());
         }
         params.put("guid", uri.toString());
-        params.put("secondary.storage.vm", "true");
+        params.put("secondary.storage.vm", "false");
         params.put("max.template.iso.size", _configDao.getValue("max.template.iso.size"));
         params.put("eth1ip", uri.getHost());
         params.put("storageip", uri.getHost());

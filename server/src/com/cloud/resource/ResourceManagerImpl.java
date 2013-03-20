@@ -1879,9 +1879,6 @@ public class ResourceManagerImpl extends ManagerBase implements ResourceManager,
 					"No resource state adapter response");
         }
         
-        //if(startup.getHostType() != null && Boolean.parseBoolean(details.get("isHyperv")))
-        //	host.setType(startup.getHostType());
-
         if (isNew) {
             host = _hostDao.persist(host);
         } else {
