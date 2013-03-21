@@ -99,67 +99,60 @@ public enum TitanAPIEnum {
 	private static HashMap<String, TitanAPIEnum> commandMaps;
 	private boolean async = false;
 
-	private TitanAPIEnum(String... arguments)
-	{
+	private TitanAPIEnum(String... arguments) {
 		putInMap(this, arguments);
 	}
-	
-	private TitanAPIEnum(boolean async, String... arguments)
-	{
+
+	private TitanAPIEnum(boolean async, String... arguments) {
 		this.async = async;
 		putInMap(this, arguments);
 	}
 
-	private void putInMap(TitanAPIEnum command, String[] arguments)
-	{
-		if(argumentMaps == null)
+	private void putInMap(TitanAPIEnum command, String[] arguments) {
+		if (argumentMaps == null)
 			argumentMaps = new HashMap<TitanAPIEnum, String[]>();
 		argumentMaps.put(command, arguments);
-		
-		if(commandMaps == null)
+
+		if (commandMaps == null)
 			commandMaps = new HashMap<String, TitanAPIEnum>();
-		
+
 		commandMaps.put(command.toString(), command);
 	}
 
-	public static HashMap<String, String> mapArgumentsToAPI(TitanAPIEnum command, Object... arguments)
-	{
+	public static HashMap<String, String> mapArgumentsToAPI(
+			TitanAPIEnum command, Object... arguments) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		String[] argumentNames = argumentMaps.get(command);
 
-		for(int i=0; i<arguments.length && i<argumentNames.length; i++)
+		for (int i = 0; i < arguments.length && i < argumentNames.length; i++)
 			map.put(argumentNames[i], arguments[i].toString());
 
 		return map;
 	}
-	
-	public static TitanAPIEnum getTitanCommand(String cmd)
-	{
+
+	public static TitanAPIEnum getTitanCommand(String cmd) {
 		return commandMaps.get(cmd);
 	}
-	
-	public HashMap<String, String> mapArgumentsForCommand(Object[] args)
-	{
-		if(args == null || args.length == 0)
+
+	public HashMap<String, String> mapArgumentsForCommand(Object[] args) {
+		if (args == null || args.length == 0)
 			return null;
-		
+
 		HashMap<String, String> map = new HashMap<String, String>();
-		
+
 		String[] argsNames = getArgumentsForCommand(this);
-		
-		for(int i=0; i < args.length; i++)
+
+		for (int i = 0; i < args.length; i++)
 			map.put(argsNames[i], args[i].toString());
-		
+
 		return map;
 	}
-	
-	public static String[] getArgumentsForCommand(TitanAPIEnum cmd)
-	{
+
+	public static String[] getArgumentsForCommand(TitanAPIEnum cmd) {
 		return argumentMaps.get(cmd);
 	}
-	
-	public boolean isAsync()
-	{
+
+	public boolean isAsync() {
 		return async;
 	}
 }

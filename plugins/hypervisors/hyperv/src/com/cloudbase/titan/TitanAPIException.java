@@ -4,13 +4,11 @@ public class TitanAPIException extends Exception {
 
 	private static final long serialVersionUID = -2762269374269316406L;
 
-	public TitanAPIException(Exception e)
-	{
+	public TitanAPIException(Exception e) {
 		super(e);
 	}
-	
-	public TitanAPIException(String details)
-	{
+
+	public TitanAPIException(String details) {
 		super(details);
 	}
 }

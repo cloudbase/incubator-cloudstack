@@ -3,11 +3,9 @@ package com.cloudbase;
 import com.cloud.agent.api.Answer;
 import com.cloud.agent.api.Command;
 
-public class AsyncAnswer extends Answer 
-{
+public class AsyncAnswer extends Answer {
 	private String obj;
 	private String jobId;
-	
 
 	public String getObj() {
 		return obj;
@@ -19,7 +17,6 @@ public class AsyncAnswer extends Answer
 
 	public AsyncAnswer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public AsyncAnswer(Command command, boolean success, String details) {
@@ -41,6 +38,5 @@ public class AsyncAnswer extends Answer
 	public String getJobId() {
 		return jobId;
 	}
-	
-	
+
 }
