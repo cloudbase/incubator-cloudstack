@@ -373,6 +373,9 @@ public class DownloadMonitorImpl extends ManagerBase implements  DownloadMonitor
 			}
 			HostVO ssAhost = _ssvmMgr.pickSsvmHost(sserver);
 			
+			// a secondary storage already has an attache, why not use it, if there is no available SSVMs?
+			// at least, until for this command, until there is an available SSVM.
+			// the attache will send it to a NfsSecondaryStorageResource (at least for hyperv case).
 			if(ssAhost == null && sserver.getResource() != null && sserver.getResource().toLowerCase().contains("hyperv"))
 				ssAhost = sserver;
 				
