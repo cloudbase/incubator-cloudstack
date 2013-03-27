@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 import com.cloud.agent.api.Answer;
 import com.cloudbase.AsyncAnswer;
-import com.cloudbase.communicator.Serializer;
-import com.cloudbase.communicator.UrlSerializer;
+import com.cloudbase.serializer.Serializer;
+import com.cloudbase.serializer.UrlSerializer;
 import com.google.gson.Gson;
 
 @SuppressWarnings("rawtypes")

@@ -25,6 +25,7 @@ import com.cloud.agent.api.StartupCommand;
 import com.cloud.agent.api.StartupStorageCommand;
 import com.cloud.agent.api.storage.ListTemplateAnswer;
 import com.cloud.agent.api.storage.ListTemplateCommand;
+import com.cloud.agent.api.storage.ListVolumeAnswer;
 import com.cloud.host.Host.Type;
 import com.cloud.storage.Storage.StorageResourceType;
 import com.cloud.storage.template.TemplateInfo;
@@ -36,6 +37,7 @@ public class HypervSecondaryStorageResource extends NfsSecondaryStorageResource 
 
     private Map<String, String> _activeOutgoingAddresses = new HashMap<String, String>();
 	
+    /*
     @Override
     public Answer executeRequest(Command cmd) {
     	if (cmd instanceof ListTemplateCommand){
@@ -61,8 +63,7 @@ public class HypervSecondaryStorageResource extends NfsSecondaryStorageResource 
             return new ListTemplateAnswer(cmd.getSecUrl(), templateInfos);
         }
     }
-    
-    
+    */
     
     public void ensureOutgoingRuleForAddress(String address) {
     	if(address == null || address.isEmpty() || address.startsWith("0.0.0.0")) {
@@ -138,6 +139,7 @@ public class HypervSecondaryStorageResource extends NfsSecondaryStorageResource 
     	super.configure(name, params);
     	
     	_name = _guid;
+    	_inSystemVM = true;
 
     	return true;
     }

@@ -295,21 +295,17 @@ public class HypervResource extends ServerResourceBase implements ServerResource
 
 	}
 
-	protected Answer execute(GetStorageStatsCommand cmd)
-			throws TitanAPIException {
+	protected Answer execute(GetStorageStatsCommand cmd) throws TitanAPIException {
 		return remote.GetStorageStats();
 	}
 
-	// TODO: Ignore
-	public PrimaryStorageDownloadAnswer execute(
-			PrimaryStorageDownloadCommand cmd) throws TitanAPIException {
-		// try {
+	public PrimaryStorageDownloadAnswer execute(PrimaryStorageDownloadCommand cmd) throws TitanAPIException {
+		
 		String secondaryStorageUrl = cmd.getSecondaryStorageUrl();
 		String primaryStroageUrl = cmd.getPrimaryStorageUrl();
 		String templateUuidName = null;
 		assert ((primaryStroageUrl != null) && (secondaryStorageUrl != null));
-		// FIXME: paths and system vm name are hard coded
-		String templateUrl = cmd.getUrl();
+		String templateUrl = cmd.getUrl();//.replace("//", "/");
 		if (!templateUrl.endsWith(".vhd"))
 			templateUrl = templateUrl
 					+ UUID.nameUUIDFromBytes(cmd.getName().getBytes()) + ".vhd";

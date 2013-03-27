@@ -87,7 +87,7 @@ public class ExternalUtils {
 				sch.connect(addr);
 				return null;
 			} catch (IOException e) {
-				s_logger.info("Could not connect to " + ipAddress + " due to "
+				s_logger.debug("Could not connect to " + ipAddress + " due to "
 						+ e.toString());
 				if (e instanceof ConnectException) {
 					// if connection is refused because of VM is being started,

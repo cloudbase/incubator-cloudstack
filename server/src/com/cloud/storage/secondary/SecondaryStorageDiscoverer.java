@@ -189,7 +189,6 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
         details.put("orig.url", uri.toString());
         details.put("mount.parent", _mountParent);
         details.put("version", "SecondaryStorage");
-        //details.put("isHyperv", Boolean.toString(isHyperv));
         
         Map<String, Object> params = new HashMap<String, Object>();
         params.putAll(details);
