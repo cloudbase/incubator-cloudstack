@@ -729,4 +729,10 @@ public class HostVO implements Host {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
+
+	
+	public void setStatus(Status status) {
+		this.status = status;
+		
+	}
 }

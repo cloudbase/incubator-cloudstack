@@ -106,7 +106,10 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
     
     protected Map<? extends ServerResource, Map<String, String>> createNfsSecondaryStorageResource(long dcId, Long podId, URI uri) {
         
-    	if (_useServiceVM) {
+    	String uriPath = uri.getPath();
+    	boolean isHyperv = uri.getPath() != null && uri.getPath().contains("hyperv");
+    	
+    	if (_useServiceVM && !isHyperv ) {
     	    return createDummySecondaryStorageResource(dcId, podId, uri);
     	}
         String mountStr = NfsUtils.uri2Mount(uri);
@@ -141,9 +144,15 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
         Map<NfsSecondaryStorageResource, Map<String, String>> srs = new HashMap<NfsSecondaryStorageResource, Map<String, String>>();
         
         NfsSecondaryStorageResource storage;
-        if(_configDao.isPremium()) {
+        if(_configDao.isPremium() || isHyperv) {
             Class<?> impl;
-            String name = "com.cloud.storage.resource.PremiumSecondaryStorageResource";
+            String name;
+            
+            if(!isHyperv)
+            	name = "com.cloud.storage.resource.PremiumSecondaryStorageResource";
+            else
+            	name = "com.cloud.storage.resource.HypervSecondaryStorageResource";
+            	
             try {
                 impl = Class.forName(name);
                 final Constructor<?> constructor = impl.getDeclaredConstructor();
@@ -179,6 +188,8 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
         details.put("mount.path", mountStr);
         details.put("orig.url", uri.toString());
         details.put("mount.parent", _mountParent);
+        details.put("version", "SecondaryStorage");
+        //details.put("isHyperv", Boolean.toString(isHyperv));
         
         Map<String, Object> params = new HashMap<String, Object>();
         params.putAll(details);
@@ -187,8 +198,10 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
             params.put("pod", podId.toString());
         }
         params.put("guid", uri.toString());
-        params.put("secondary.storage.vm", "false");
+        params.put("secondary.storage.vm", "true");
         params.put("max.template.iso.size", _configDao.getValue("max.template.iso.size"));
+        params.put("eth1ip", uri.getHost());
+        params.put("storageip", uri.getHost());
         
         try {
             storage.configure("Storage", params);
@@ -242,6 +255,7 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
         
         details.put("mount.path", uri.toString());
         details.put("orig.url", uri.toString());
+        details.put("version", "secStorage");
         
         Map<String, Object> params = new HashMap<String, Object>();
         params.putAll(details);
@@ -296,6 +310,8 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
 	public void postDiscovery(List<HostVO> hosts, long msId) {
 		if (_useServiceVM) {
 			for (HostVO h: hosts) {
+				if(h.getResource() != null && h.getResource().toLowerCase().contains("hyperv"))
+					continue;
 				_agentMgr.agentStatusTransitTo(h, Event.AgentDisconnected, msId);
 			}
 		}

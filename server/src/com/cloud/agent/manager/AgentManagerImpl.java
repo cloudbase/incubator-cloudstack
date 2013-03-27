@@ -419,6 +419,10 @@ public class AgentManagerImpl extends ManagerBase implements AgentManager, Handl
     @Override
     public Answer sendToSSVM(final Long dcId, final Command cmd) {
         List<HostVO> ssAHosts = _ssvmMgr.listUpAndConnectingSecondaryStorageVmHost(dcId);
+        
+        if (ssAHosts == null || ssAHosts.isEmpty() ) {
+            ssAHosts = _ssvmMgr.listSecondaryStorageHostsInOneZone(dcId);
+        }
         if (ssAHosts == null || ssAHosts.isEmpty() ) {
             return new Answer(cmd, false, "can not find secondary storage VM agent for data center " + dcId);
         }

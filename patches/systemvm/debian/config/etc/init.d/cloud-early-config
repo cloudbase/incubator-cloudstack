@@ -125,10 +125,13 @@ get_boot_params() {
           ;;
      virtualpc)
           # Hyper-V is recognized as virtualpc hypervisor type. Boot args are passed in the NTFS data-disk
-          mkdir -p $EXTRA_MOUNT
-          mount -t ntfs /dev/sdb1 $EXTRA_MOUNT
-          cp -f $EXTRA_MOUNT/cmdline /var/cache/cloud/cmdline
-          umount $EXTRA_MOUNT
+          #mkdir -p $EXTRA_MOUNT
+          #mount -t ntfs /dev/sdb1 $EXTRA_MOUNT
+          #cp -f $EXTRA_MOUNT/cmdline /var/cache/cloud/cmdline
+          #umount $EXTRA_MOUNT
+          
+          cat /proc/cmdline > /var/cache/cloud/cmdline
+          sed -i "s/%/ /g" /var/cache/cloud/cmdline
           ;;          
   esac
 
@@ -425,6 +428,7 @@ setup_dnsmasq() {
         sed -r -i s/^[#]?domain=.*$/domain=$DOMAIN/ /etc/dnsmasq.conf
         #answer all local domain queries
         sed  -i -e "s/^[#]*local=.*$/local=\/$DOMAIN\//" /etc/dnsmasq.conf
+
   fi
   
   if [ -n  "$DNS_SEARCH_ORDER" ]
@@ -514,7 +518,6 @@ setup_vpc_apache2() {
 
   echo "Options -Indexes" > /var/www/html/.htaccess
 }
-
 
 setup_apache2() {
   log_it "Setting up apache web server"

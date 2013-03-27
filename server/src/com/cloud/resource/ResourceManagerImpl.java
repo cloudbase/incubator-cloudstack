@@ -1851,6 +1851,17 @@ public class ResourceManagerImpl extends ManagerBase implements ResourceManager,
         host.setLastPinged(System.currentTimeMillis() >> 10);
         host.setHostTags(hostTags);
         host.setDetails(details);
+
+		host.setStorageUrl(startup.getIqn());
+		if(details.get("version") == null)
+		{
+			s_logger.warn("Host " + startup.getName() + " has null version! Setting default.");
+			host.setVersion("NullVersion");
+		}
+		else
+			host.setVersion(details.get("version"));
+		
+
         if (startup.getStorageIpAddressDeux() != null) {
             host.setStorageIpAddressDeux(startup.getStorageIpAddressDeux());
             host.setStorageMacAddressDeux(startup.getStorageMacAddressDeux());
@@ -1867,6 +1878,9 @@ public class ResourceManagerImpl extends ManagerBase implements ResourceManager,
 			throw new CloudRuntimeException(
 					"No resource state adapter response");
         }
+        
+        //if(startup.getHostType() != null && Boolean.parseBoolean(details.get("isHyperv")))
+        //	host.setType(startup.getHostType());
 
         if (isNew) {
             host = _hostDao.persist(host);
@@ -1892,7 +1906,9 @@ public class ResourceManagerImpl extends ManagerBase implements ResourceManager,
             }
         }
 
-        return host;
+		s_logger.info("Done creating HostVO with hypervisor: " + host.getHypervisorType().toString());
+		
+		return host;
     }
 
     private boolean isFirstHostInCluster(HostVO host)

@@ -229,6 +229,10 @@
                         //formatSelect.append("<option value='QCOW2'>QCOW2</option>");
                         items.push({id:'QCOW2', description: 'QCOW2'});
                       }
+                      else if(args.hypervisor == "Hyperv"){
+                    	//formatSelect.append("<option value='Hyperv'>Hyperv</option>");
+                    	items.push({id: 'VHD', description: 'VHD'});
+                      }
                       else if(args.hypervisor == "BareMetal") {
                         //formatSelect.append("<option value='BareMetal'>BareMetal</option>");
                         items.push({id:'BareMetal', description: 'BareMetal'});

@@ -506,7 +506,8 @@
             select: function(args) {
               args.response.success({ data: [
                 { id: 'XenServer', description: 'XenServer' },
-                { id: 'KVM', description: 'KVM'}
+                { id: 'KVM', description: 'KVM'},
+                { id: 'HyperV', description: 'HyperV'}
               ]});
             }
           },

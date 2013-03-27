@@ -108,15 +108,13 @@ import com.cloud.utils.NumbersUtil;
 import com.cloud.utils.S3Utils;
 import com.cloud.utils.S3Utils.FileNamingStrategy;
 import com.cloud.utils.S3Utils.ObjectNamingStrategy;
-import com.cloud.utils.component.ComponentContext;
 import com.cloud.utils.exception.CloudRuntimeException;
 import com.cloud.utils.net.NetUtils;
 import com.cloud.utils.script.OutputInterpreter;
 import com.cloud.utils.script.Script;
 import com.cloud.vm.SecondaryStorageVm;
 
-public class NfsSecondaryStorageResource extends ServerResourceBase implements
-SecondaryStorageResource {
+public class NfsSecondaryStorageResource extends ServerResourceBase implements SecondaryStorageResource {
 
     private static final Logger s_logger = Logger
             .getLogger(NfsSecondaryStorageResource.class);
@@ -126,33 +124,34 @@ SecondaryStorageResource {
 
     int _timeout;
 
-    String _instance;  
-    String _dc;
-    String _pod;
-    String _guid;
-    String _role;
-    Map<String, Object> _params;
-    StorageLayer _storage;
-    boolean _inSystemVM = false;
-    boolean _sslCopy = false;
+    protected String _instance;  
+    protected String _dc;
+    protected String _pod;
+    protected String _guid;
+    protected String _role;
+    protected Map<String, Object> _params;
+    protected StorageLayer _storage;
+    protected boolean _inSystemVM = false;
+    protected boolean _sslCopy = false;
 
-    DownloadManager _dlMgr;
-    UploadManager _upldMgr;
-    private String _configSslScr;
-    private String _configAuthScr;
-    private String _configIpFirewallScr;
-    private String _publicIp;
-    private String _hostname;
-    private String _localgw;
-    private String _eth1mask;
-    private String _eth1ip;
-    private String _storageIp;
-    private String _storageNetmask;
-    private String _storageGateway;
-    private final List<String> nfsIps = new ArrayList<String>();
-    final private String _parent = "/mnt/SecStorage";
-    final private String _tmpltDir = "/var/cloudstack/template";
-    final private String _tmpltpp = "template.properties";
+    protected DownloadManager _dlMgr;
+    protected UploadManager _upldMgr;
+    protected String _configSslScr;
+    protected String _configAuthScr;
+    protected String _configIpFirewallScr;
+    protected String _publicIp;
+    protected String _hostname;
+    protected String _localgw;
+    protected String _eth1mask;
+    protected String _eth1ip;
+    protected String _storageIp;
+    protected String _storageNetmask;
+    protected String _storageGateway;
+    protected final List<String> nfsIps = new ArrayList<String>();
+    final protected String _parent = "/mnt/SecStorage";
+    final protected String _tmpltDir = "/var/cloudstack/template";
+    final protected String _tmpltpp = "template.properties";
+    
     @Override
     public void disconnected() {
     }
@@ -1393,7 +1392,7 @@ SecondaryStorageResource {
 
     synchronized public String getRootDir(String secUrl) {
         try {
-            URI uri = new URI(secUrl);
+        	URI uri = new URI(secUrl);
             String nfsHost = uri.getHost();
 
             InetAddress nfsHostAddr = InetAddress.getByName(nfsHost);
@@ -1752,12 +1751,12 @@ SecondaryStorageResource {
 
     @Override
     public StartupCommand[] initialize() {
-
+        
         final StartupSecondaryStorageCommand cmd = new StartupSecondaryStorageCommand();
         fillNetworkInformation(cmd);
         if(_publicIp != null)
             cmd.setPublicIpAddress(_publicIp);
-
+        
         Script command = new Script("/bin/bash", s_logger);
         command.add("-c");
         command.add("ln -sf " + _parent + " /var/www/html/copy");

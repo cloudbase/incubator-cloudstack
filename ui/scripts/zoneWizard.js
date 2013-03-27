@@ -47,6 +47,9 @@
       case 'VMware':
         hypervisorAttr = 'vmwarenetworklabel';
         break;
+      case 'Hyperv':
+          hypervisorAttr = 'hypervnetworklabel';
+          break;
       case 'BareMetal':
         hypervisorAttr = 'baremetalnetworklabel';
         break;
@@ -1210,6 +1213,11 @@
                 items.push({id: "nfs", description: "nfs"});
                 items.push({id: "vmfs", description: "vmfs"});
                 args.response.success({data: items});
+              }
+              else if(selectedClusterObj.hypervisortype == "Hyperv") {
+                  var items = [];
+                  items.push({id: "nfs", description: "nfs"});
+                  args.response.success({data: items});
               }
               else if(selectedClusterObj.hypervisortype == "Ovm") {
                 var items = [];

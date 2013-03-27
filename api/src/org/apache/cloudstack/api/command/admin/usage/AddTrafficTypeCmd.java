@@ -22,6 +22,7 @@ import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseAsyncCreateCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
+import org.apache.cloudstack.api.BaseCmd.CommandType;
 import org.apache.cloudstack.api.response.PhysicalNetworkResponse;
 import org.apache.cloudstack.api.response.TrafficTypeResponse;
 import org.apache.log4j.Logger;
@@ -58,6 +59,9 @@ public class AddTrafficTypeCmd extends BaseAsyncCreateCmd {
 
     @Parameter(name=ApiConstants.VMWARE_NETWORK_LABEL, type=CommandType.STRING, description="The network name label of the physical device dedicated to this traffic on a VMware host")
     private String vmwareLabel;
+    
+    @Parameter(name=ApiConstants.HYPERV_NETWORK_LABEL, type=CommandType.STRING, description="The network name label of the physical device dedicated to this traffic on a HyperV host")
+    private String hypervLabel;
 
     @Parameter(name=ApiConstants.VLAN, type=CommandType.STRING, description="The VLAN id to be used for Management traffic by VMware host")
     private String vlan;
@@ -85,6 +89,10 @@ public class AddTrafficTypeCmd extends BaseAsyncCreateCmd {
 
     public String getVmwareLabel() {
         return vmwareLabel;
+    }
+    
+    public String getHypervLabel() {
+        return hypervLabel;
     }
 
     public String getSimulatorLabel() {
@@ -129,7 +137,7 @@ public class AddTrafficTypeCmd extends BaseAsyncCreateCmd {
 
     @Override
     public void create() throws ResourceAllocationException {
-        PhysicalNetworkTrafficType result = _networkService.addTrafficTypeToPhysicalNetwork(getPhysicalNetworkId(), getTrafficType(), getXenLabel(), getKvmLabel(), getVmwareLabel(), getSimulatorLabel(), getVlan());
+        PhysicalNetworkTrafficType result = _networkService.addTrafficTypeToPhysicalNetwork(getPhysicalNetworkId(), getTrafficType(), getXenLabel(), getKvmLabel(), getVmwareLabel(), getHypervLabel(), getSimulatorLabel(), getVlan());
         if (result != null) {
             setEntityId(result.getId());
             setEntityUuid(result.getUuid());

@@ -327,7 +327,7 @@ public class SecondaryStorageManagerImpl extends ManagerBase implements Secondar
             String secUrl = cssHost.getStorageUrl();
             SecStorageSetupCommand setupCmd = new SecStorageSetupCommand(secUrl, null);
             for ( SecondaryStorageVmVO ssVm : alreadyRunning ) {
-                HostVO host = _resourceMgr.findHostByName(ssVm.getInstanceName());
+                HostVO host = _hostDao.findById(ssHostId);
                 Answer answer = _agentMgr.easySend(host.getId(), setupCmd);
                 if (answer != null && answer.getResult()) {
                     if (s_logger.isDebugEnabled()) {

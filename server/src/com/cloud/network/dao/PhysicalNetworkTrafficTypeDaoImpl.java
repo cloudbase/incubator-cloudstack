@@ -21,7 +21,6 @@ import java.util.List;
 import javax.ejb.Local;
 
 import org.springframework.stereotype.Component;
-
 import com.cloud.hypervisor.Hypervisor.HypervisorType;
 import com.cloud.network.Networks.TrafficType;
 import com.cloud.utils.Pair;
@@ -39,6 +38,7 @@ public class PhysicalNetworkTrafficTypeDaoImpl extends GenericDaoBase<PhysicalNe
     final GenericSearchBuilder<PhysicalNetworkTrafficTypeVO, String> kvmAllFieldsSearch;
     final GenericSearchBuilder<PhysicalNetworkTrafficTypeVO, String> xenAllFieldsSearch;
     final GenericSearchBuilder<PhysicalNetworkTrafficTypeVO, String> vmWareAllFieldsSearch;
+    final GenericSearchBuilder<PhysicalNetworkTrafficTypeVO, String> hypervAllFieldsSearch;
     final GenericSearchBuilder<PhysicalNetworkTrafficTypeVO, String> simulatorAllFieldsSearch;
     final GenericSearchBuilder<PhysicalNetworkTrafficTypeVO, String> ovmAllFieldsSearch;
 
@@ -66,6 +66,12 @@ public class PhysicalNetworkTrafficTypeDaoImpl extends GenericDaoBase<PhysicalNe
         vmWareAllFieldsSearch.and("trafficType", vmWareAllFieldsSearch.entity().getTrafficType(), Op.EQ);
         vmWareAllFieldsSearch.selectField(vmWareAllFieldsSearch.entity().getVmwareNetworkLabel());
         vmWareAllFieldsSearch.done();
+        
+        hypervAllFieldsSearch = createSearchBuilder(String.class);
+        hypervAllFieldsSearch.and("physicalNetworkId", hypervAllFieldsSearch.entity().getPhysicalNetworkId(), Op.EQ);
+        hypervAllFieldsSearch.and("trafficType", hypervAllFieldsSearch.entity().getTrafficType(), Op.EQ);
+        hypervAllFieldsSearch.selectField(hypervAllFieldsSearch.entity().getHypervNetworkLabel());
+        hypervAllFieldsSearch.done();
         
         simulatorAllFieldsSearch = createSearchBuilder(String.class);
         simulatorAllFieldsSearch.and("physicalNetworkId", simulatorAllFieldsSearch.entity().getPhysicalNetworkId(), Op.EQ);
@@ -108,6 +114,8 @@ public class PhysicalNetworkTrafficTypeDaoImpl extends GenericDaoBase<PhysicalNe
             sc = kvmAllFieldsSearch.create();
         } else if (hType == HypervisorType.VMware) {
             sc = vmWareAllFieldsSearch.create();
+        } else if (hType == HypervisorType.Hyperv) {
+            sc = hypervAllFieldsSearch.create();
         } else if (hType == HypervisorType.Simulator) {
         	sc = simulatorAllFieldsSearch.create();
         } else if (hType == HypervisorType.Ovm) {

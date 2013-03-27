@@ -36,8 +36,8 @@ INSERT INTO `cloud`.`vm_template` (id, uuid, unique_name, name, public, created,
 INSERT INTO `cloud`.`vm_template` (id, uuid, unique_name, name, public, created, type, hvm, bits, account_id, url, checksum, enable_password, display_text, format, guest_os_id, featured, cross_zones, hypervisor_type)
     VALUES (8, UUID(), 'routing-8', 'SystemVM Template (vSphere)', 0, now(), 'SYSTEM', 0, 32, 1, 'http://download.cloud.com/templates/burbank/burbank-systemvm-08012012.ova', '7137e453f950079ea2ba6feaafd939e8', 0, 'SystemVM Template (vSphere)', 'OVA', 15, 0, 1, 'VMware' );
 
-INSERT INTO `cloud`.`vm_template` (id, uuid, unique_name, name, public, created, type, hvm, bits, account_id, url, checksum, enable_password, display_text, format, guest_os_id, featured, cross_zones, hypervisor_type)
-    VALUES (9, UUID(), 'routing-9', 'SystemVM Template (HyperV)', 0, now(), 'SYSTEM', 0, 32, 1, 'http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2', 'f613f38c96bf039f2e5cbf92fa8ad4f8', 0, 'SystemVM Template (HyperV)', 'VHD', 15, 0, 1, 'Hyperv' );
+INSERT INTO `cloud`.`vm_template` (id, unique_name, name, public, created, type, hvm, bits, account_id, url, checksum, enable_password, display_text, format, guest_os_id, featured, cross_zones, hypervisor_type)
+    VALUES (9, 'routing-9', 'SystemVM Template (HyperV)', 0, now(), 'SYSTEM', 0, 32, 1, 'http://192.168.137.150/templates/systemvm-disk1-cracked-clean.vhd.bz2', 'f613f38c96bf039f2e5cbf92fa8ad4f8', 0, 'SystemVM Template (HyperV)', 'VHD', 15, 0, 1, 'Hyperv');
 
 INSERT INTO `cloud`.`guest_os_category` (id, uuid, name) VALUES (1, UUID(), 'CentOS');
 INSERT INTO `cloud`.`guest_os_category` (id, uuid, name) VALUES (2, UUID(), 'Debian');
@@ -390,7 +390,6 @@ INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("VmWare", 'Other Ubuntu Linux (32-bit)', 59);
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("VmWare", 'Other Ubuntu (64-bit)', 100);
 
-
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("VmWare", 'Other 2.6x Linux (32-bit)', 75);
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("VmWare", 'Other 2.6x Linux (64-bit)', 76);
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("VmWare", 'Other Linux (32-bit)', 98);
@@ -505,4 +504,94 @@ INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('KVM', 'DOS', 102);
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('KVM', 'Other', 60);
 INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('KVM', 'Other', 103);
+
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 7(32-bit)', 48);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 7(64-bit)', 49);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2008 R2(64-bit)', 54);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2008(32-bit)', 52);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2008(64-bit)', 53);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Enterprise Edition (32-bit)', 50);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Enterprise Edition (64-bit)', 51);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Datacenter Edition (32-bit)', 87);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Datacenter Edition (64-bit)', 88);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Standard Edition (32-bit)', 89);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Standard Edition (64-bit)', 90);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Server 2003, Web Edition', 91);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Small Bussiness Server 2003', 92);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Vista (32-bit)', 56);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows Vista (64-bit)', 101);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows XP Professional (32-bit)', 93);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows XP Professional (32-bit)', 57);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows XP Professional (32-bit)', 58);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows XP Professional (64-bit)', 94);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 2000 Advanced Server', 95);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 2000 Server', 61);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 2000 Professional', 105);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 2000 Server', 55);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 98', 62);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 95', 63);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows NT 4', 64);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ("Hyperv", 'Microsoft Windows 3.1', 65);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 4.5', 1);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 4.6', 2);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 4.7', 3);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 4.8', 4);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.0', 5);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.0', 6);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.1', 7);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.1', 8);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.2', 9);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.2', 10);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.3', 11);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.3', 12);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.4', 13);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.4', 14);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.5', 111);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'CentOS 5.5', 112);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 4.5', 26);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 4.6', 27);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 4.7', 28);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 4.8', 29);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.0', 30);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.0', 31);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.1', 32);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.1', 33);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.2', 34);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.2', 35);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.3', 36);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.3', 37);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.4', 38);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.4', 39);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.5', 113);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 5.5', 114);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 4', 106);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 3', 66);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 3', 67);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Red Hat Enterprise Linux 2', 131);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Fedora 13', 115);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Fedora 12', 116);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Fedora 11', 117);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Fedora 10', 118);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Fedora 9', 119);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Fedora 8', 120);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 10.04', 121);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 10.04', 126);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 9.10', 122);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 9.10', 127);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 9.04', 123);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 9.04', 128);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 8.10', 124);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 8.10', 129);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 8.04', 125);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Ubuntu 8.04', 130);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Debian GNU/Linux 5', 15);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Debian GNU/Linux 5', 72);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Debian GNU/Linux 4', 73);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Debian GNU/Linux 4', 74);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Other Linux 2.6x', 75);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Other Linux 2.6x', 76);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Other Ubuntu', 59);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Other Ubuntu', 100);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Other Linux', 98);
+INSERT INTO `cloud`.`guest_os_hypervisor` (hypervisor_type, guest_os_name, guest_os_id) VALUES ('Hyperv', 'Other Linux', 99);
 
