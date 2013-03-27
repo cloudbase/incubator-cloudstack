@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -1852,15 +1853,14 @@ public class ResourceManagerImpl extends ManagerBase implements ResourceManager,
         host.setHostTags(hostTags);
         host.setDetails(details);
 
-		host.setStorageUrl(startup.getIqn());
-		if(details.get("version") == null)
-		{
-			s_logger.warn("Host " + startup.getName() + " has null version! Setting default.");
-			host.setVersion("NullVersion");
-		}
-		else
-			host.setVersion(details.get("version"));
-		
+        host.setStorageUrl(startup.getIqn());
+        if(details.get("version") == null)
+        {
+            s_logger.warn("Host " + startup.getName() + " has null version! Setting default.");
+            host.setVersion("NullVersion");
+        }
+        else
+	        host.setVersion(details.get("version"));	
 
         if (startup.getStorageIpAddressDeux() != null) {
             host.setStorageIpAddressDeux(startup.getStorageIpAddressDeux());
@@ -1903,9 +1903,9 @@ public class ResourceManagerImpl extends ManagerBase implements ResourceManager,
             }
         }
 
-		s_logger.info("Done creating HostVO with hypervisor: " + host.getHypervisorType().toString());
-		
-		return host;
+        s_logger.info("Done creating HostVO with hypervisor: " + host.getHypervisorType().toString());
+
+        return host;
     }
 
     private boolean isFirstHostInCluster(HostVO host)

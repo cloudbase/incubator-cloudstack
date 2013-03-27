@@ -1,5 +1,4 @@
 // Copyright 2013 Cloudbase Solutions Srl
-// Copyright 2012 Citrix Systems, Inc. 
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -16,37 +15,22 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-package com.cloud.hypervisor.mo;
+package com.cloudbase.serializer;
 
-public class HypervisorHostResourceSummary {
-	private long memoryBytes;
-	private long cpuCount;
-	private long cpuSpeed;
+import java.io.IOException;
+import java.util.Map;
 
-	public HypervisorHostResourceSummary() {
+public class JsonSerializer extends Serializer {
+
+	public JsonSerializer(String host) {
+		super(host);
 	}
-	
-	public long getMemoryBytes() {
-		return memoryBytes;
+
+	@Override
+	public String sendData(String command, Map<String, Object> map)
+			throws IOException {
+		String json = gson.toJson(map);
+		return this.send(command, json);
 	}
-	
-	public void setMemoryBytes(long memoryBytes) {
-		this.memoryBytes = memoryBytes;
-	}
-	
-	public long getCpuCount() {
-		return cpuCount;
-	}
-	
-	public void setCpuCount(long cpuCount) {
-		this.cpuCount = cpuCount;
-	}
-	
-	public long getCpuSpeed() {
-		return cpuSpeed;
-	}
-	
-	public void setCpuSpeed(long cpuSpeed) {
-		this.cpuSpeed = cpuSpeed;
-	}
+
 }

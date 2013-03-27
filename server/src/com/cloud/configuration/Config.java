@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -98,7 +99,6 @@ public enum Config {
 	OvsTunnelNetworkDefaultLabel("Network", ManagementServer.class, String.class, "sdn.ovs.controller.default.label", "cloud-public", "Default network label to be used when fetching interface for GRE endpoints", null),
 	VmNetworkThrottlingRate("Network", ManagementServer.class, Integer.class, "vm.network.throttling.rate", "200", "Default data transfer rate in megabits per second allowed in User vm's default network.", null),
 	NetworkLockTimeout("Network", ManagementServer.class, Integer.class, "network.lock.timeout", "600", "Lock wait timeout (seconds) while implementing network", null),
-
 
 	SecurityGroupWorkCleanupInterval("Network", ManagementServer.class, Integer.class, "network.securitygroups.work.cleanup.interval", "120", "Time interval (seconds) in which finished work is cleaned up from the work table", null),
 	SecurityGroupWorkerThreads("Network", ManagementServer.class, Integer.class, "network.securitygroups.workers.pool.size", "50", "Number of worker threads processing the security group update work queue", null),

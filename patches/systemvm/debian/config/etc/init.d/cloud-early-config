@@ -9,6 +9,7 @@
 # Default-Stop:      0 6
 # Short-Description: configure according to cmdline
 ### END INIT INFO
+# Copyright 2013 Cloudbase Solutions Srl
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -125,13 +126,10 @@ get_boot_params() {
           ;;
      virtualpc)
           # Hyper-V is recognized as virtualpc hypervisor type. Boot args are passed in the NTFS data-disk
-          #mkdir -p $EXTRA_MOUNT
-          #mount -t ntfs /dev/sdb1 $EXTRA_MOUNT
-          #cp -f $EXTRA_MOUNT/cmdline /var/cache/cloud/cmdline
+          # mkdir -p $EXTRA_MOUNT
+          # mount -t ntfs /dev/sdb1 $EXTRA_MOUNT
+          cp -f /proc/cmdline /var/cache/cloud/cmdline
           #umount $EXTRA_MOUNT
-          
-          cat /proc/cmdline > /var/cache/cloud/cmdline
-          sed -i "s/%/ /g" /var/cache/cloud/cmdline
           ;;          
   esac
 
@@ -332,12 +330,12 @@ setup_common() {
   fi
   if [ -n "$ETH0_IP6" ]
   then
-	  setup_interface_ipv6 "0" $ETH0_IP6 $ETH0_IP6_PRELEN
+      setup_interface_ipv6 "0" $ETH0_IP6 $ETH0_IP6_PRELEN
   fi
   setup_interface "1" $ETH1_IP $ETH1_MASK $GW
   if [ -n "$ETH2_IP" ]
   then
-  	setup_interface "2" $ETH2_IP $ETH2_MASK $GW
+    setup_interface "2" $ETH2_IP $ETH2_MASK $GW
   fi
    
   echo $NAME > /etc/hostname
@@ -428,7 +426,6 @@ setup_dnsmasq() {
         sed -r -i s/^[#]?domain=.*$/domain=$DOMAIN/ /etc/dnsmasq.conf
         #answer all local domain queries
         sed  -i -e "s/^[#]*local=.*$/local=\/$DOMAIN\//" /etc/dnsmasq.conf
-
   fi
   
   if [ -n  "$DNS_SEARCH_ORDER" ]
@@ -518,6 +515,7 @@ setup_vpc_apache2() {
 
   echo "Options -Indexes" > /var/www/html/.htaccess
 }
+
 
 setup_apache2() {
   log_it "Setting up apache web server"
@@ -614,7 +612,7 @@ setup_router() {
         done
       fi
   else
-  	setup_common eth0 eth1
+    setup_common eth0 eth1
       if [ -n "$EXTRA_PUBNICS" ]
       then
         for((i = 2; i < 2 + $EXTRA_PUBNICS; i++))
@@ -771,18 +769,18 @@ setup_dhcpsrvr() {
 }
 
 setup_storage_network() {
-	if [ x"$STORAGE_IP" == "x" -o x"$STORAGE_NETMASK" == "x" ]
-	then
-		log_it "Incompleted parameters STORAGE_IP:$STORAGE_IP, STORAGE_NETMASK:$STORAGE_NETMASK, STORAGE_CIDR:$STORAGE_CIDR. Cannot setup storage network"
-		return
-	fi
-	
-	echo "" >> /etc/network/interfaces
-	echo "auto eth3" >> /etc/network/interfaces
-	
-	setup_interface "3" "$STORAGE_IP" "$STORAGE_NETMASK"
-	#ip route add "$STORAGE_CIDR" via "$STORAGE_IP"
-	log_it "Successfully setup storage network with STORAGE_IP:$STORAGE_IP, STORAGE_NETMASK:$STORAGE_NETMASK, STORAGE_CIDR:$STORAGE_CIDR"
+    if [ x"$STORAGE_IP" == "x" -o x"$STORAGE_NETMASK" == "x" ]
+    then
+        log_it "Incompleted parameters STORAGE_IP:$STORAGE_IP, STORAGE_NETMASK:$STORAGE_NETMASK, STORAGE_CIDR:$STORAGE_CIDR. Cannot setup storage network"
+        return
+    fi
+    
+    echo "" >> /etc/network/interfaces
+    echo "auto eth3" >> /etc/network/interfaces
+    
+    setup_interface "3" "$STORAGE_IP" "$STORAGE_NETMASK"
+    #ip route add "$STORAGE_CIDR" via "$STORAGE_IP"
+    log_it "Successfully setup storage network with STORAGE_IP:$STORAGE_IP, STORAGE_NETMASK:$STORAGE_NETMASK, STORAGE_CIDR:$STORAGE_CIDR"
 }
 
 setup_secstorage() {
@@ -871,10 +869,10 @@ EOF
 }
 
 change_password() {
-	if [ x"$VM_PASSWORD" != x"" ]
-	then
-		echo "root:$VM_PASSWORD" | chpasswd
-	fi
+    if [ x"$VM_PASSWORD" != x"" ]
+    then
+        echo "root:$VM_PASSWORD" | chpasswd
+    fi
 }
 
 start() {
@@ -891,27 +889,27 @@ start() {
      router)
          [ "$NAME" == "" ] && NAME=router
          setup_router
-	  ;;
+      ;;
      vpcrouter)
          [ "$NAME" == "" ] && NAME=vpcrouter
          setup_vpcrouter
-	  ;;
+      ;;
      dhcpsrvr)
          [ "$NAME" == "" ] && NAME=dhcpsrvr
          setup_dhcpsrvr
-	  ;;
+      ;;
      secstorage)
          [ "$NAME" == "" ] && NAME=secstorage
          setup_secstorage $hyp;
-	  ;;
+      ;;
      consoleproxy)
          [ "$NAME" == "" ] && NAME=consoleproxy
          setup_console_proxy $hyp;
-	  ;;
+      ;;
      elbvm)
          [ "$NAME" == "" ] && NAME=elb
          setup_elbvm
-	  ;;
+      ;;
      unknown)
          [ "$NAME" == "" ] && NAME=systemvm
          setup_default;
@@ -1009,25 +1007,25 @@ for i in $CMDLINE
           ;;
       template)
         TEMPLATE=$VALUE
-      	;;
+        ;;
       sshonguest)
         SSHONGUEST=$VALUE
         ;;
       name)
-	    NAME=$VALUE
-	    ;;
+        NAME=$VALUE
+        ;;
       dhcprange)
         DHCP_RANGE=$(echo $VALUE | tr ':' ',')
-      	;;
+        ;;
       bootproto)
         BOOTPROTO=$VALUE 
-      	;;
+        ;;
       type)
-        TYPE=$VALUE	
-	    ;;
+        TYPE=$VALUE 
+        ;;
       defaultroute)
-        DEFAULTROUTE=$VALUE	
-	;;
+        DEFAULTROUTE=$VALUE 
+    ;;
       redundant_router)
         RROUTER=$VALUE
         ;;
@@ -1078,37 +1076,37 @@ done
 case "$1" in
 start)
 
-	log_action_begin_msg "Executing cloud-early-config"
+    log_action_begin_msg "Executing cloud-early-config"
         log_it "Executing cloud-early-config"
-	if start; then
-	    log_action_end_msg $?
-	else
-	    log_action_end_msg $?
-	fi
-	;;
+    if start; then
+        log_action_end_msg $?
+    else
+        log_action_end_msg $?
+    fi
+    ;;
 
 stop)
-	log_action_begin_msg "Stopping cloud-early-config"
+    log_action_begin_msg "Stopping cloud-early-config"
         #Override old system's interface setting
         setup_default;
-	log_action_end_msg 0
-	;;
+    log_action_end_msg 0
+    ;;
 
 force-reload|restart)
 
-	log_warning_msg "Running $0  is deprecated because it may not enable again some interfaces"
-	log_action_begin_msg "Executing cloud-early-config"
-	if start; then
-	    log_action_end_msg $?
-	else
-	    log_action_end_msg $?
-	fi
-	;;
+    log_warning_msg "Running $0  is deprecated because it may not enable again some interfaces"
+    log_action_begin_msg "Executing cloud-early-config"
+    if start; then
+        log_action_end_msg $?
+    else
+        log_action_end_msg $?
+    fi
+    ;;
 
 *)
-	echo "Usage: /etc/init.d/cloud-early-config {start|stop}"
-	exit 1
-	;;
+    echo "Usage: /etc/init.d/cloud-early-config {start|stop}"
+    exit 1
+    ;;
 esac
 
 exit 0
