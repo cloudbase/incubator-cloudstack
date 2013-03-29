@@ -1734,7 +1734,7 @@ public abstract class GenericDaoBase<T, ID extends Serializable> extends Compone
         final String value = (String)params.get("cache.size");
 
         if (value != null) {
-        	final CacheManager cm = CacheManager.create();
+            final CacheManager cm = CacheManager.create();
             final int maxElements = NumbersUtil.parseInt(value, 0);
             final int live = NumbersUtil.parseInt((String)params.get("cache.time.to.live"), 300);
             final int idle = NumbersUtil.parseInt((String)params.get("cache.time.to.idle"), 300);

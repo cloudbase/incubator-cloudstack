@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -4847,7 +4848,6 @@
                                         $(hostObjs).each(function() {
                                           //items.push({id: this.id, description: (this.name + ": " +(this.hasEnoughCapacity? "Available" : "Full"))}); //listHosts API no longer returns hasEnoughCapacity proprety
 																					items.push({id: this.id, description: this.name});
-
                                         });
                                         args.response.success({data: items});
                                       }
@@ -5222,7 +5222,6 @@
                 dataProvider: function (args) {
                   var searchByArgs = args.filterBy.search.value.length ?
                     '&name=' + args.filterBy.search.value : '';
-
 
                   var routers = [];
                   $.ajax({

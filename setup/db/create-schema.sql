@@ -1,3 +1,4 @@
+-- Copyright 2013 Cloudbase Solutions Srl
 -- Licensed to the Apache Software Foundation (ASF) under one
 -- or more contributor license agreements.  See the NOTICE file
 -- distributed with this work for additional information
@@ -1892,7 +1893,6 @@ CREATE TABLE `cloud`.`swift` (
   CONSTRAINT `uc_swift__uuid` UNIQUE (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE `cloud`.`op_host_transfer` (
   `id` bigint unsigned UNIQUE NOT NULL COMMENT 'Id of the host',
   `initial_mgmt_server_id` bigint unsigned COMMENT 'management server the host is transfered from',
@@ -2423,3 +2423,4 @@ CREATE TABLE `cloud`.`nicira_nvp_nic_map` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET foreign_key_checks = 1;
+

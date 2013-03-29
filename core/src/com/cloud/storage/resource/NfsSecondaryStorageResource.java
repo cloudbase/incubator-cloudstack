@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -114,7 +115,8 @@ import com.cloud.utils.script.OutputInterpreter;
 import com.cloud.utils.script.Script;
 import com.cloud.vm.SecondaryStorageVm;
 
-public class NfsSecondaryStorageResource extends ServerResourceBase implements SecondaryStorageResource {
+public class NfsSecondaryStorageResource extends ServerResourceBase implements
+SecondaryStorageResource {
 
     private static final Logger s_logger = Logger
             .getLogger(NfsSecondaryStorageResource.class);
@@ -1392,7 +1394,7 @@ public class NfsSecondaryStorageResource extends ServerResourceBase implements S
 
     synchronized public String getRootDir(String secUrl) {
         try {
-        	URI uri = new URI(secUrl);
+            URI uri = new URI(secUrl);
             String nfsHost = uri.getHost();
 
             InetAddress nfsHostAddr = InetAddress.getByName(nfsHost);
@@ -1751,12 +1753,12 @@ public class NfsSecondaryStorageResource extends ServerResourceBase implements S
 
     @Override
     public StartupCommand[] initialize() {
-        
+
         final StartupSecondaryStorageCommand cmd = new StartupSecondaryStorageCommand();
         fillNetworkInformation(cmd);
         if(_publicIp != null)
             cmd.setPublicIpAddress(_publicIp);
-        
+
         Script command = new Script("/bin/bash", s_logger);
         command.add("-c");
         command.add("ln -sf " + _parent + " /var/www/html/copy");

@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -11,11 +12,25 @@
 // Unless required by applicable law or agreed to in writing,
 // software distributed under the License is distributed on an
 // "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the 
+// KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-package com.cloud.hypervisor.vmware.manager;
+package com.cloudbase.serializer;
 
-public interface VmwareStorageMount {
-    String getMountPoint(String storageUrl);
+import java.io.IOException;
+import java.util.Map;
+
+public class JsonSerializer extends Serializer {
+
+	public JsonSerializer(String host) {
+		super(host);
+	}
+
+	@Override
+	public String sendData(String command, Map<String, Object> map)
+			throws IOException {
+		String json = gson.toJson(map);
+		return this.send(command, json);
+	}
+
 }

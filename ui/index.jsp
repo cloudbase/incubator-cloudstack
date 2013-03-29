@@ -23,7 +23,6 @@ under the License.
 </c:if>
 <fmt:setBundle basename="resources/messages"/>
 <% long now = System.currentTimeMillis(); %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +34,6 @@ under the License.
     <c:if test="${!empty cookie.lang && cookie.lang.value != 'en'}">
       <link type="text/css" rel="stylesheet" href="css/cloudstack3.${cookie.lang.value}.css" />
     </c:if>
-
     <!--[if IE 7]>
     <link type="text/css" rel="stylesheet" href="css/cloudstack3-ie7.css" />
     <![endif]-->
@@ -43,7 +41,6 @@ under the License.
   <body>
     <!-- CloudStack widget content -->
     <div id="cloudStack3-container"></div>
-
     <!-- Templates -->
     <div id="template">
       <!-- Login form -->
@@ -56,22 +53,18 @@ under the License.
               <label for="username"><fmt:message key="label.username"/></label>
               <input type="text" name="username" class="required" />
             </div>
-
             <!-- Password -->
             <div class="field password">
               <label for="password"><fmt:message key="label.password"/></label>
               <input type="password" name="password" class="required" />
             </div>
-
             <!-- Domain -->
             <div class="field domain">
               <label for="domain"><fmt:message key="label.domain"/></label>
               <input type="text" name="domain" />
             </div>
-
             <!-- Submit (login) -->
             <input type="submit" value="<fmt:message key="label.login"/>" />
-
             <!-- Select language -->
             <div class="select-language">
               <select name="language">
@@ -88,7 +81,6 @@ under the License.
           </div>
         </form>
       </div>
-
       <!-- Instance wizard -->
       <div class="multi-wizard instance-wizard">
         <div class="progress">
@@ -117,7 +109,6 @@ under the License.
                     </select>
                   </div>
                 </div>
-
                 <!-- Select template -->
                 <div class="section select-template">
                   <h3><fmt:message key="label.select.iso.or.template" /></h3>
@@ -135,7 +126,6 @@ under the License.
                 </div>
               </div>
             </div>
-
             <!-- Step 2: Select ISO -->
             <div class="step select-iso" wizard-step-id="select-iso">
               <!-- Select template -->
@@ -319,7 +309,6 @@ under the License.
                   </div>
                 </div>
               </div>
-
               <!-- Step 5c: Select security group -->
               <div class="wizard-step-conditional select-security-group">
                 <div class="main-desc">
@@ -331,7 +320,6 @@ under the License.
                 </div>
               </div>
             </div>
-
             <!-- Step 6: Review -->
             <div class="step review" wizard-step-id="review">
               <div class="main-desc">
@@ -348,7 +336,6 @@ under the License.
                       <input type="text" name="displayname" />
                     </div>
                   </div>
-
                   <!-- Add to group -->
                   <div class="select odd">
                     <div class="name">
@@ -358,7 +345,6 @@ under the License.
                       <input type="text" name="groupname" />
                     </div>
                   </div>
-
                   <!-- Zone -->
                   <div class="select">
                     <div class="name">
@@ -371,7 +357,6 @@ under the License.
                       <a href="1"><fmt:message key="label.edit"/></a>
                     </div>
                   </div>
-
                   <!-- Hypervisor -->
                   <div class="select odd">
                     <div class="name">
@@ -384,7 +369,6 @@ under the License.
                       <a href="2"><fmt:message key="label.edit"/></a>
                     </div>
                   </div>
-
                   <!-- Template -->
                   <div class="select">
                     <div class="name">
@@ -397,7 +381,6 @@ under the License.
                       <a href="2"><fmt:message key="label.edit"/></a>
                     </div>
                   </div>
-
                   <!-- Service offering -->
                   <div class="select odd">
                     <div class="name">
@@ -410,7 +393,6 @@ under the License.
                       <a href="3"><fmt:message key="label.edit"/></a>
                     </div>
                   </div>
-
                   <!-- Data disk offering -->
                   <div class="select">
                     <div class="name">
@@ -423,7 +405,6 @@ under the License.
                       <a href="4"><fmt:message key="label.edit"/></a>
                     </div>
                   </div>
-
                   <!-- Primary network -->
                   <div class="select odd">
                     <div class="name">
@@ -454,7 +435,6 @@ under the License.
             </div>
           </div>
         </form>
-
         <!-- Computer diagram -->
         <div class="diagram">
           <div>
@@ -467,7 +447,6 @@ under the License.
           <div class="part hd"></div>
           <div class="part network-card"></div>
         </div>
-
         <!-- Buttons -->
         <div class="buttons">
           <div class="button previous"><span><fmt:message key="label.previous"/></span></div>
@@ -475,7 +454,6 @@ under the License.
           <div class="button next"><span><fmt:message key="label.next"/></span></div>
         </div>
       </div>
-
       <!-- Zone wizard -->
       <div class="multi-wizard zone-wizard">
         <div class="progress">
@@ -536,7 +514,6 @@ under the License.
               </div>
             </form>
           </div>
-
           <!-- Step 2: Add zone -->
           <div class="setup-zone" zone-wizard-form="zone"
                zone-wizard-step-id="addZone">
@@ -547,7 +524,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 3.1: Setup Physical Network -->
           <div class="setup-physical-network"
                zone-wizard-step-id="setupPhysicalNetwork"
@@ -566,7 +542,6 @@ under the License.
               <fmt:message key="message.setup.physical.network.during.zone.creation.basic"/>
             </div>
             <div class="button add new-physical-network"><span class="icon">&nbsp;</span><span><fmt:message key="label.add.physical.network"/></span></div>
-
             <!-- Traffic types drag area -->
             <div class="traffic-types-drag-area">
               <div class="header"><fmt:message key="label.traffic.types"/></div>
@@ -645,13 +620,11 @@ under the License.
                 </li>
               </ul>
             </div>
-
             <div class="drag-helper-icon"></div>
             <div class="content input-area">
               <form></form>
             </div>
           </div>
-
           <!-- Step 3.1b: Add Netscaler device -->
           <div class="setup-physical-network-basic"
                zone-wizard-step-id="addNetscalerDevice"
@@ -664,13 +637,11 @@ under the License.
               <li class="guest-traffic"><fmt:message key="label.guest.traffic"/></li>
               <li class="conditional storage-traffic"><fmt:message key="label.storage.traffic"/></li>
             </ul>
-
             <div class="info-desc"><fmt:message key="label.please.specify.netscaler.info"/></div>
             <div class="content input-area">
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 3.2: Configure public traffic -->
           <div class="setup-public-traffic" zone-wizard-prefilter="addPublicNetwork"
                zone-wizard-step-id="configurePublicTraffic">
@@ -681,7 +652,6 @@ under the License.
               <li class="guest-traffic"><fmt:message key="label.guest.traffic"/></li>
               <li class="conditional storage-traffic"><fmt:message key="label.storage.traffic"/></li>
             </ul>
-
             <div class="info-desc" id="add_zone_public_traffic_desc">
               <span id="for_basic_zone" style="display:none"><fmt:message key="message.public.traffic.in.basic.zone"/></span>
 							<span id="for_advanced_zone" style="display:none"><fmt:message key="message.public.traffic.in.advanced.zone"/></span>
@@ -699,7 +669,6 @@ under the License.
               <li class="guest-traffic"><fmt:message key="label.guest.traffic"/></li>
               <li class="conditional storage-traffic"><fmt:message key="label.storage.traffic"/></li>
             </ul>
-
             <div class="info-desc">
               <fmt:message key="message.add.pod.during.zone.creation"/>
             </div>
@@ -707,7 +676,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 3.4: Configure guest traffic -->
           <div class="setup-guest-traffic"
                zone-wizard-form="guestTraffic"
@@ -720,7 +688,6 @@ under the License.
               <li class="guest-traffic active"><fmt:message key="label.guest.traffic"/></li>
               <li class="conditional storage-traffic"><fmt:message key="label.storage.traffic"/></li>
             </ul>
-
             <div class="info-desc" id="add_zone_guest_traffic_desc">
               <span id="for_basic_zone" style="display:none"><fmt:message key="message.guest.traffic.in.basic.zone"/></span>
 							<span id="for_advanced_zone" style="display:none"><fmt:message key="message.guest.traffic.in.advanced.zone"/></span>
@@ -729,7 +696,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 3.5: Configure storage traffic -->
           <div class="setup-storage-traffic" zone-wizard-prefilter="configureStorageTraffic"
                zone-wizard-step-id="configureStorageTraffic">
@@ -740,13 +706,11 @@ under the License.
               <li class="guest-traffic"><fmt:message key="label.guest.traffic"/></li>
               <li class="storage-traffic active"><fmt:message key="label.storage.traffic"/></li>
             </ul>
-
             <div class="info-desc">
               <fmt:message key="message.storage.traffic"/>
             </div>
             <div ui-custom="storageTrafficIPRange"></div>
           </div>
-
           <!-- Step 4.1: Add cluster -->
           <div class="add-cluster" zone-wizard-form="cluster"
                zone-wizard-step-id="addCluster">
@@ -764,7 +728,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 4.2: Add host -->
           <div class="add-cluster" zone-wizard-form="host"
                zone-wizard-step-id="addHost" zone-wizard-prefilter="addHost">
@@ -781,7 +744,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 4.3: Add primary storage -->
           <div class="add-cluster" zone-wizard-form="primaryStorage" zone-wizard-prefilter="addPrimaryStorage"
                zone-wizard-step-id="addPrimaryStorage">
@@ -798,7 +760,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 4.4: Add secondary storage -->
           <div class="add-cluster" zone-wizard-form="secondaryStorage"
                zone-wizard-step-id="addSecondaryStorage">
@@ -815,7 +776,6 @@ under the License.
               <div class="select-container"></div>
             </div>
           </div>
-
           <!-- Step 5: Launch -->
           <div class="review" zone-wizard-step-id="launch">
             <div class="main-desc pre-setup"><fmt:message key="message.launch.zone"/></div>
@@ -829,7 +789,6 @@ under the License.
             </div>
           </div>
         </div>
-
         <!-- Buttons -->
         <div class="buttons">
           <div class="button previous"><span><fmt:message key="label.previous"/></span></div>
@@ -837,7 +796,6 @@ under the License.
           <div class="button next"><span><fmt:message key="label.next"/></span></div>
         </div>
       </div>
-
       <!-- Network chart -->
       <div class="network-chart normal">
         <ul>
@@ -870,7 +828,6 @@ under the License.
           </li>
         </ul>
       </div>
-
       <!-- Project dashboard -->
       <div class="project-dashboard-view">
         <div class="overview-area">
@@ -938,7 +895,6 @@ under the License.
             </div>
           </div>
         </div>
-
         <div class="info-boxes">
           <!-- Networking and security -->
           <div class="info-box networking-and-security">
@@ -1604,7 +1560,6 @@ under the License.
             <div class="add-snapshot-action add"></div>
           </div>
         </div>
-
         <!-- Scheduled snapshots -->
         <div class="scheduled-snapshots">
           <p>Scheduled Snapshots</p>
@@ -1618,7 +1573,6 @@ under the License.
                 <td class="keep">Keep: <span></span></td>
                 <td class="actions"><div class="action destroy"><span class="icon">&nbsp;</span></div></td>
               </tr>
-
               <!-- Daily -->
               <tr class="daily">
                 <td class="time">Time: <span></span></td>
@@ -1627,7 +1581,6 @@ under the License.
                 <td class="keep">Keep: <span></span></td>
                 <td class="actions"><div class="action destroy"><span class="icon">&nbsp;</span></div></td>
               </tr>
-
               <!-- Weekly -->
               <tr class="weekly">
                 <td class="time">Time: <span></span></td>
@@ -1636,7 +1589,6 @@ under the License.
                 <td class="keep">Keep: <span></span></td>
                 <td class="actions"><div class="action destroy"><span class="icon">&nbsp;</span></div></td>
               </tr>
-
               <!-- Monthly -->
               <tr class="monthly">
                 <td class="time">Time: <span></span></td>
@@ -1674,8 +1626,6 @@ under the License.
     <script src="lib/flot/jquery.flot.stack.js" type="text/javascript"></script>
     <script src="lib/flot/jquery.flot.symbol.js" type="text/javascript"></script>
     <script src="lib/flot/jquery.flot.threshold.js" type="text/javascript"></script>
-
-
     <!-- CloudStack -->
     <script type="text/javascript" src="scripts/ui/core.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/utils.js?t=<%=now%>"></script>
