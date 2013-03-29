@@ -1,5 +1,4 @@
 // Copyright 2013 Cloudbase Solutions Srl
-// Copyright 2012 Citrix Systems, Inc. 
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -16,37 +15,39 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-package com.cloud.hypervisor.mo;
+package com.cloudbase.serializer;
 
-public class HypervisorHostResourceSummary {
-	private long memoryBytes;
-	private long cpuCount;
-	private long cpuSpeed;
+import java.io.IOException;
+import java.util.Map;
 
-	public HypervisorHostResourceSummary() {
+public class UrlSerializer extends Serializer {
+
+	public UrlSerializer(String host) {
+		super(host);
 	}
-	
-	public long getMemoryBytes() {
-		return memoryBytes;
+
+	public String sendData(String command, Map<String, Object> map)
+			throws IOException {
+		String query = mapToURLQuery(map);
+
+		if (query != null && !query.equals(""))
+			return this.send(command + "?" + query, " ");
+
+		return this.send(command, " ");
 	}
-	
-	public void setMemoryBytes(long memoryBytes) {
-		this.memoryBytes = memoryBytes;
+
+	private static String mapToURLQuery(Map<String, Object> map) {
+		if (map == null || map.isEmpty())
+			return "";
+
+		StringBuilder buff = new StringBuilder();
+
+		for (String key : map.keySet())
+			buff.append(key).append("=").append(map.get(key)).append("&");
+
+		buff.deleteCharAt(buff.length() - 1);
+
+		return buff.toString();
 	}
-	
-	public long getCpuCount() {
-		return cpuCount;
-	}
-	
-	public void setCpuCount(long cpuCount) {
-		this.cpuCount = cpuCount;
-	}
-	
-	public long getCpuSpeed() {
-		return cpuSpeed;
-	}
-	
-	public void setCpuSpeed(long cpuSpeed) {
-		this.cpuSpeed = cpuSpeed;
-	}
+
 }

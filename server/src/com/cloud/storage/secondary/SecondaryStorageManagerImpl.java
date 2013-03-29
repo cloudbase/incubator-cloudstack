@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -327,7 +328,11 @@ public class SecondaryStorageManagerImpl extends ManagerBase implements Secondar
             String secUrl = cssHost.getStorageUrl();
             SecStorageSetupCommand setupCmd = new SecStorageSetupCommand(secUrl, null);
             for ( SecondaryStorageVmVO ssVm : alreadyRunning ) {
-                HostVO host = _hostDao.findById(ssHostId);
+                HostVO host = _resourceMgr.findHostByName(ssVm.getInstanceName());
+                
+                if(host == null)
+                	continue;
+                
                 Answer answer = _agentMgr.easySend(host.getId(), setupCmd);
                 if (answer != null && answer.getResult()) {
                     if (s_logger.isDebugEnabled()) {

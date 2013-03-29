@@ -1,3 +1,4 @@
+// Copyright 2013 Cloudbase Solutions Srl
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -189,7 +190,6 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
         details.put("orig.url", uri.toString());
         details.put("mount.parent", _mountParent);
         details.put("version", "SecondaryStorage");
-        //details.put("isHyperv", Boolean.toString(isHyperv));
         
         Map<String, Object> params = new HashMap<String, Object>();
         params.putAll(details);
@@ -198,7 +198,7 @@ public class SecondaryStorageDiscoverer extends DiscovererBase implements Discov
             params.put("pod", podId.toString());
         }
         params.put("guid", uri.toString());
-        params.put("secondary.storage.vm", "true");
+        params.put("secondary.storage.vm", "false");
         params.put("max.template.iso.size", _configDao.getValue("max.template.iso.size"));
         params.put("eth1ip", uri.getHost());
         params.put("storageip", uri.getHost());

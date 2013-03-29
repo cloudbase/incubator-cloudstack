@@ -118,6 +118,7 @@ import com.cloud.storage.LaunchPermissionVO;
 import com.cloud.storage.Snapshot;
 import com.cloud.storage.SnapshotVO;
 import com.cloud.storage.Storage;
+
 import com.cloud.storage.Storage.ImageFormat;
 import com.cloud.storage.Storage.TemplateType;
 import com.cloud.storage.StorageManager;
@@ -127,6 +128,7 @@ import com.cloud.storage.StoragePoolStatus;
 import com.cloud.storage.TemplateProfile;
 import com.cloud.storage.Upload;
 import com.cloud.storage.Upload.Type;
+
 import com.cloud.storage.UploadVO;
 import com.cloud.storage.VMTemplateHostVO;
 import com.cloud.storage.VMTemplateS3VO;
@@ -158,6 +160,7 @@ import com.cloud.storage.secondary.SecondaryStorageVmManager;
 import com.cloud.storage.swift.SwiftManager;
 import com.cloud.storage.upload.UploadMonitor;
 import com.cloud.template.TemplateAdapter.TemplateAdapterType;
+
 import com.cloud.user.Account;
 import com.cloud.user.AccountManager;
 import com.cloud.user.AccountService;
@@ -461,6 +464,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
                         templateId, _primaryStorageDownloadWait);
             }
         }
+
         if (tmpltHostRef == null) {
             throw new InvalidParameterValueException("The " + desc + " has not been downloaded ");
         }
